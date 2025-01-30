@@ -9,7 +9,12 @@ const CheckOutModal = () => {
   };
   return (
     <>
-      <Button onClick={handleShow}>Check Out</Button>
+      <Button
+        style={{ backgroundColor: "rgb(3, 122, 122)" }}
+        onClick={handleShow}
+      >
+        Check Out
+      </Button>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Body>Order Placed Sucessfully</Modal.Body>

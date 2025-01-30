@@ -34,6 +34,14 @@ const CartContextProvider = ({ children }) => {
     }
   };
 
+  const deleteFromCart = (productId) => {
+    const findProduct = cartItems.find((item) => item.id === productId);
+    if (findProduct) {
+      setCartItems(cartItems.filter((item) => item.id !== productId));
+    } else {
+      alert("Product is not there");
+    }
+  };
   const clearCart = () => {
     setCartItems([]);
   };
@@ -52,6 +60,7 @@ const CartContextProvider = ({ children }) => {
         removeFromCart,
         clearCart,
         calculateTotalAmount,
+        deleteFromCart,
         cartItems,
       }}
     >
