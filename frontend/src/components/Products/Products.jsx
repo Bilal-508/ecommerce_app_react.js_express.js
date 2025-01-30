@@ -8,25 +8,31 @@ import {
   Image,
   Modal,
   Row,
-  Toast,
 } from "react-bootstrap";
 import CartContext from "../../context/CartContext";
+import SideBar from "../Sidebar/SideBar";
 
 const Products = () => {
   const productData = useProductInfo();
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
-  const { addToCart, cartItems } = useContext(CartContext);
+  const [show, setShow] = useState(false);
+  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
+  // const [show, setShow] = useState(false);
+  // const handleClose = () => setShow(false);
+  // const handleShow = () => {
+  //   setShow(true);
+  // };
+
+  const { addToCart } = useContext(CartContext);
 
   return (
     <div className="mb-5">
-      <Modal show={show} onHide={handleClose}>
+      {/* <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Body>Product Added to Cart</Modal.Body>
         </Modal.Header>
-      </Modal>
+      </Modal> */}
       <Container>
         <Row className="g-4">
           {productData ? (
@@ -47,7 +53,7 @@ const Products = () => {
                     <Button
                       style={{ backgroundColor: "rgb(3, 122, 122)" }}
                       id={item.id}
-                      onClick={() => {
+                      onClick={(e) => {
                         addToCart(item);
                         handleShow();
                       }}
@@ -63,6 +69,8 @@ const Products = () => {
           )}
         </Row>
       </Container>
+
+      <SideBar show={show} handleClose={handleClose} />
     </div>
   );
 };
